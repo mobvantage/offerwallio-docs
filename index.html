@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -100,12 +100,6 @@
     </a>
     <div class="tocify-wrapper">
       <img src="images/logo.png" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -113,7 +107,6 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -122,228 +115,285 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Welcome to the offerwall.io integration guide.</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h1 id="setup">Setup</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="for-networks">For Networks</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<aside class="warning">
+To use offerwall.io, you must have an enterprise tier HasOffers account with API access enabled.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+<p>To allow an app to integrate your offers into their offerwall, follow these steps:</p>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ol>
+<li>Create a new Affiliate for the app. Each app must have its own Affiliate</li>
+<li>Generate an API key for the Affiliate:
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ol>
+<li>Click &lsquo;Affiliates &gt; Manage Affiliates&rsquo;.</li>
+<li>Find the Affiliate you just created. Under the &#39;Account Users&rsquo; section, find the login button</li>
+<li>Now in the Affiliate dashboard, expand &#39;Tools&rsquo; in the left menu and click on &#39;APIs&rsquo;</li>
+<li>Click &#39;Request API key&rsquo;</li>
+</ol></li>
+<li>Optionally, depending on your network&rsquo;s settings, you may need to approve the API key:
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<ol>
+<li>Log out of the affiliate dashboard to return back to your admin dashboard</li>
+<li>Click on &#39;Support &gt; API&rsquo; in the top menu</li>
+<li>Click on the &#39;Affiliate API V3 Keys&rsquo; link</li>
+<li>Find the newly requested API key and hit &#39;Approve&rsquo;</li>
+</ol></li>
+<li>Set up a global postback handler for the Affiliate
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<ol>
+<li>Click &#39;Affiliates &gt; Manage Affiliates&rsquo; and find the Affiliate</li>
+<li>Find the &#39;Conversion Pixels / URLs&rsquo; section and click &#39;Add&rsquo;</li>
+<li>For the offer, select &#39;All Offers (Offer ID: 0)&rsquo;. For the Type, select &#39;Postback URL&rsquo;. In the URL field, enter 
+<code class="prettyprint">http://offerwall.io/postback?postback_key=REPLACE_ME&amp;network_id=&lt;YOUR NETWORK ID&gt;&amp;api_key=&lt;API KEY&gt;&amp;aff_sub={aff_sub}&amp;offer_id={offer_id}&amp;transaction_id={transaction_id}</code>
+<aside class="notice">
+You must replace <code>YOUR NETWORK ID</code> with your network&rsquo;s ID and <code>API KEY</code> with the key you generated in step 2. The Affiliate will replace <code>REPLACE_ME</code> later.
+</aside></li>
+</ol></li>
+<li>That&rsquo;s it! Send your network ID and the API key to someone working for the app.</li>
+</ol>
+
+<h2 id="for-apps">For Apps</h2>
+
+<ol>
+<li>Log in to your <a href="http://offerwall.io/dashboard">offerwall.io dashboard</a>. Use the network ID and API key provided by your account manager</li>
+<li>Enter your postback URL. For more information, see the <a href="#postback-handler">postback handler</a> section.</li>
+<li>Copy your <code>postback key</code></li>
+<li>Update your global postback URL in your network&rsquo;s affiliate dashboard.
+
+<ol>
+<li>Log in to your affiliate&rsquo;s dashboard</li>
+<li>Expand &#39;Tools&rsquo; and click &#39;Pixels/Postbacks&rsquo; in the left nav</li>
+<li>Replace <code>REPLACE_ME</code> in the URL with the <code>postback key</code></li>
+</ol></li>
+<li>That&rsquo;s it! Read on to learn about fetching offers and setting up your postback handler</li>
+</ol>
+
+<h1 id="offers">Offers</h1>
+
+<h2 id="get-all-offers">Get All Offers</h2>
+
+<p>This endpoint retrieves all active, approved offers with available cap.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<blockquote>
+<p>Sample request:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>http://offerwall.io/offers?network_id=awesomeadsnetwork&amp;api_key=XXXXXXXXXX&amp;country_code=US&amp;gaid=55952f1e-857d-4c07-b845-899c36218e0e&amp;user_id=354637
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Sample response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10949"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Castle Clash: Rise of Beasts"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;\/b&gt;Build and battle your way to glory in Castle Clash! With over 100 million clashers worldwide, the heat is on in the most addictive game ever! In a brilliant mix of fast-paced strategy and exciting combat, Castle Clash is a game of epic proportions! Hire legions of powerful Heroes and lead an army of mythical creatures, big and small. Fight to the top and become the world\u2019s greatest Warlord. Your empire is as strong as your creativity!&lt;br&gt; \r\n&lt;b&gt;Conversion:&lt;\/b&gt; Install &amp; Open.&lt;br&gt;\r\n&lt;b&gt;Traffic Restrictions:&lt;\/b&gt; Custom Creatives; Adult Traffic; Push Notification Traffic; Ads Icon Traffic; SMS Traffic&lt;br&gt;\r\n&lt;b&gt;Caps:&lt;\/b&gt; This campaign is capped.  &lt;br&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.28</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/tracking.adactioninteractive.com\/aff_c?offer_id=10949&amp;aff_id=2862&amp;aff_sub=165738&amp;ios_ifa=33557372-1966-4F3C-892D-6DF16CA0C3C9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"thumbnails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/media.go2speed.org\/brand\/files\/adactioninteractive\/10949\/Castle%20Clash.png"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"targeting"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"iOS"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"692669501"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16050"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PocketLIVE - Live Streaming &amp; Broadcasting"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;\/b&gt;PocketLIVE is a dynamic new live streaming platform for creators who share what they love, LIVE, with viewers in real time. &lt;br&gt; \r\n&lt;b&gt;Conversion:&lt;\/b&gt; Install &amp; Open.&lt;br&gt;\r\n&lt;b&gt;Traffic Restrictions:&lt;\/b&gt; Custom Creatives; Adult Traffic; Push Notification Traffic; Ads Icon Traffic; SMS Traffic; Instagram\/Twitter Traffic&lt;br&gt;\r\n&lt;b&gt;Caps:&lt;\/b&gt; This campaign is uncapped.&lt;br&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.28</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/tracking.adactioninteractive.com\/aff_c?offer_id=16050&amp;aff_id=2862&amp;aff_sub=165738&amp;ios_ifa=33557372-1966-4F3C-892D-6DF16CA0C3C9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"thumbnails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/media.go2speed.org\/brand\/files\/adactioninteractive\/16050\/PocketLive.png"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"targeting"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"iOS"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1149680758"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p><code>GET http://offerwall.io/offers</code></p>
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
+<h3 id="parameters">Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
 <th>Description</th>
+<th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>network_id</td>
+<td><strong>Yes</strong></td>
+<td>The HasOffers network ID</td>
+<td><code>AwesomeAdsNetwork</code></td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>api_key</td>
+<td><strong>Yes</strong></td>
+<td>Your Affiliate API key</td>
+<td></td>
+</tr>
+<tr>
+<td>user_id</td>
+<td><strong>Yes</strong></td>
+<td>A unique identifier for the current user within your app. This value will be passed back to you in the <a href="#postback-handler">postback handler</a></td>
+<td><code>354637</code></td>
+</tr>
+<tr>
+<td>country_code</td>
+<td><strong>Yes</strong></td>
+<td>The user&rsquo;s country code in ISO 3166-1 Alpha 2 format.</td>
+<td><code>US</code></td>
+</tr>
+<tr>
+<td>idfa</td>
+<td>Optional</td>
+<td>The user&rsquo;s Apple advertising identifier. If the user is an iOS user, this parameter is <strong>required</strong></td>
+<td><code>33557372-1966-4F3C-892D-6DF16CA0C3C9</code></td>
+</tr>
+<tr>
+<td>gaid</td>
+<td>Optional</td>
+<td>The user&rsquo;s Google advertising identifier. If the user is an Android user, this parameter is <strong>required</strong></td>
+<td><code>55952f1e-857d-4c07-b845-899c36218e0e</code></td>
+</tr>
+<tr>
+<td>aff_sub2 - aff_sub9</td>
+<td>Optional</td>
+<td>Pass any additional data in the <code>aff_sub2</code>, <code>aff_sub3</code>, &hellip; <code>aff_sub9</code> parameters. This data will be passed back to you in the <a href="#postback-handler">postback handler</a></td>
+<td></td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<h3 id="response">Response</h3>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>The response will be an array of <code>Offer</code> objects with the following structure:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>A unique identifier for the offer</td>
+<td><code>10949</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The offer&rsquo;s name. This is pulled from the offer&rsquo;s store listing</td>
+<td><code>Castle Clash: Rise of Beasts</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td>The offer&rsquo;s description</td>
+<td></td>
+</tr>
+<tr>
+<td>payout</td>
+<td>The offer&rsquo;s payout (usually in USD). The currency will be determined by the network&rsquo;s currency</td>
+<td><code>0.28</code></td>
+</tr>
+<tr>
+<td>click_url</td>
+<td>The offer&rsquo;s redirect url. You must launch this URL to start the offer</td>
+<td><code>https://tracking.adactioninteractive.com/aff_c?offer_id=10949&amp;aff_id=2862&amp;aff_sub=165738&amp;ios_ifa=33557372-1966-4F3C-892D-6DF16CA0C3C9</code></td>
+</tr>
+<tr>
+<td>thumbnails</td>
+<td>An array of thumbnail objects with the following properties: <ul><li><code>width</code></li><li><code>height</code></li><li><code>url</code></li></url></td>
+<td></td>
+</tr>
+<tr>
+<td>targeting</td>
+<td>An array of targeting rules. Valid rules are: <ul><li><code>iOS</code></li><li><code>Android</code></li><li><code>iPhone</code></li><li><code>iPad</code></li><li><code>iPod</code></li></ul></td>
+<td></td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>The offer&rsquo;s store ID. For iOS offers, this will be the iTunes store ID. For Android offers, this will be the package name.</td>
+<td><p>For iOS, <code>1149680758</code></p><p>For Android, <code>com.igg.castleclash</code></p></td>
+</tr>
+</tbody></table>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<h1 id="postback-handler">Postback handler</h1>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<p>Whenever a user completes an offer, we will issue a GET request to your configured postback handler so that you can reward the user.</p>
+
+<h2 id="available-parameters">Available parameters</h2>
+
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Sample postback:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<pre class="highlight plaintext"><code>http://yourpostbackhandler.com/?userId={user_id}&amp;offerId={offer_id}&amp;transactionId={transaction_id}&amp;signature={signature}
+</code></pre>
+<p>The following parameters are available for you to use in your postback handler. Enter variables like so: <code>{variable}</code></p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>user_id</td>
+<td>The ID of the user who completed the offer. This was passed when the user <a href="#get-all-offers">fetched the offers</a></td>
+<td><code>165738</code></td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td>A unique transaction ID. You should store this and use it in your system to ensure a user is not credited more than once for the same offer</td>
+<td><code>1021a6461c2fb939a9b1e1101b31b1</code></td>
+</tr>
+<tr>
+<td>offer_id</td>
+<td>The ID of the offer which was completed.</td>
+<td><code>9791</code></td>
+</tr>
+<tr>
+<td>signature</td>
+<td><p>Each postback request is signed to ensure authenticity. You should use this parameter to ensure the request is coming from our servers.</p><p>The signature is calculated as: <code>sha1(postback key + user_id + offer_id + transaction_id)</code></td>
+<td></td>
+</tr>
+<tr>
+<td>aff_sub2 - affsub_9</td>
+<td>Any additional parameters you passed when <a href="#get-all-offers">fetching the offers</a> will be made available through these parameters</td>
+<td></td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+<h2 id="response">Response</h2>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>For any successful transaction, your postback handler should respond with HTTP status 200</p>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>
