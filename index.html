@@ -129,6 +129,10 @@ To use offerwall.io, you must have an enterprise tier HasOffers account with API
 
 <p>To allow an app to integrate your offers into their offerwall, follow these steps:</p>
 
+<blockquote>
+<p><strong>NOTE</strong>: If your network allows public Affiliate signups, you can skip steps 1 - 2 and allow the app to create its own Affiliate account and request an API key</p>
+</blockquote>
+
 <ol>
 <li>Create a new Affiliate for the app. Each app must have its own Affiliate</li>
 <li>Generate an API key for the Affiliate:
@@ -155,11 +159,15 @@ To use offerwall.io, you must have an enterprise tier HasOffers account with API
 <li>For the offer, select &#39;All Offers (Offer ID: 0)&rsquo;. For the Type, select &#39;Postback URL&rsquo;. In the URL field, enter 
 <code class="prettyprint">http://offerwall.io/postback?postback_key=REPLACE_ME&amp;network_id=&lt;YOUR NETWORK ID&gt;&amp;api_key=&lt;API KEY&gt;&amp;aff_sub={aff_sub}&amp;offer_id={offer_id}&amp;transaction_id={transaction_id}</code>
 <aside class="notice">
-You must replace <code>YOUR NETWORK ID</code> with your network&rsquo;s ID and <code>API KEY</code> with the key you generated in step 2. The Affiliate will replace <code>REPLACE_ME</code> later.
+You must replace <code>YOUR NETWORK ID</code> with your network&rsquo;s ID and <code>API KEY</code> with the key you generated in step 2. The Affiliate will replace <code>REPLACE_ME</code> <a href="#for-apps">later</a>.
 </aside></li>
 </ol></li>
 <li>That&rsquo;s it! Send your network ID and the API key to someone working for the app.</li>
 </ol>
+
+<aside class="notice">
+Ensure your network has the Webhook feature enabled. This feature is still in beta - to activate it, contact your network&rsquo;s account manager
+</aside>
 
 <h2 id="for-apps">For Apps</h2>
 
@@ -351,6 +359,16 @@ You must replace <code>YOUR NETWORK ID</code> with your network&rsquo;s ID and <
 <p>Sample postback:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>http://yourpostbackhandler.com/?userId={user_id}&amp;offerId={offer_id}&amp;transactionId={transaction_id}&amp;signature={signature}
+</code></pre>
+<blockquote>
+<p>Sample signature calculation: <br/><br/>
+In this example, <code>postback_key</code> is <code>jrfj9cbd3zqh23cxayjr4fgvi</code><br/><br/>
+Assume we got a <code>GET</code> request to <code>http://yourpostbackhandler.com/?userId=165738&amp;offerId=9791&amp;transactionId=1021a6461c2fb939a9b1e1101b31b1</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>signature = sha1(postback_key + userId + offerId + transactionId)
+  = sha1(jrfj9cbd3zqh23cxayjr4fgvi + 165738 + 9791 + 1021a6461c2fb939a9b1e1101b31b1)
+  = sha1(jrfj9cbd3zqh23cxayjr4fgvi16573897911021a6461c2fb939a9b1e1101b31b1)
+  = 06464cc32f5460df66664d2d59d0b923e3ac5a78
 </code></pre>
 <p>The following parameters are available for you to use in your postback handler. Enter variables like so: <code>{variable}</code></p>
 
