@@ -215,9 +215,6 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
         </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/media.go2speed.org\/brand\/files\/adactioninteractive\/10949\/Castle%20Clash.png"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"targeting"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"iOS"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
     </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"692669501"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -232,9 +229,6 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
         </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/media.go2speed.org\/brand\/files\/adactioninteractive\/16050\/PocketLive.png"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"targeting"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"iOS"</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1149680758"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -289,10 +283,28 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
 <td><code>55952f1e-857d-4c07-b845-899c36218e0e</code></td>
 </tr>
 <tr>
+<td>device_model</td>
+<td>Optional</td>
+<td>The user&rsquo;s device model. Passing this is recommended to increase the accuracy of the targeting</td>
+<td><code>iPhone 6</code></td>
+</tr>
+<tr>
+<td>os_version</td>
+<td>Optional</td>
+<td>The user&rsquo;s OS version. Passing this is recommended to increase the accuracy of the targeting</td>
+<td><code>10.2</code></td>
+</tr>
+<tr>
 <td>aff_sub2 - aff_sub9</td>
 <td>Optional</td>
 <td>Pass any additional data in the <code>aff_sub2</code>, <code>aff_sub3</code>, &hellip; <code>aff_sub9</code> parameters. This data will be passed back to you in the <a href="#postback-handler">postback handler</a></td>
 <td></td>
+</tr>
+<tr>
+<td>full_response</td>
+<td>Optional</td>
+<td>When set to <code>true</code>, the response will include a number of other properties for each offer. Useful for debugging.</td>
+<td><code>true</code></td>
 </tr>
 </tbody></table>
 
@@ -335,11 +347,6 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
 <tr>
 <td>thumbnails</td>
 <td>An array of thumbnail objects with the following properties: <ul><li><code>width</code></li><li><code>height</code></li><li><code>url</code></li></url></td>
-<td></td>
-</tr>
-<tr>
-<td>targeting</td>
-<td>An array of targeting rules. Valid rules are: <ul><li><code>iOS</code></li><li><code>Android</code></li><li><code>iPhone</code></li><li><code>iPad</code></li><li><code>iPod</code></li></ul></td>
 <td></td>
 </tr>
 <tr>
