@@ -157,7 +157,7 @@ To use offerwall.io, you must have an enterprise tier HasOffers account with API
 <li>Click &#39;Affiliates &gt; Manage Affiliates&rsquo; and find the Affiliate</li>
 <li>Find the &#39;Conversion Pixels / URLs&rsquo; section and click &#39;Add&rsquo;</li>
 <li>For the offer, select &#39;All Offers (Offer ID: 0)&rsquo;. For the Type, select &#39;Postback URL&rsquo;. In the URL field, enter 
-<code class="prettyprint">http://offerwall.io/postback?postback_key=REPLACE_ME&amp;network_id=&lt;YOUR NETWORK ID&gt;&amp;api_key=&lt;API KEY&gt;&amp;aff_sub={aff_sub}&amp;offer_id={offer_id}&amp;transaction_id={transaction_id}</code>
+<code class="prettyprint">https://offerwall.io/postback?postback_key=REPLACE_ME&amp;network_id=&lt;YOUR NETWORK ID&gt;&amp;api_key=&lt;API KEY&gt;&amp;aff_sub={aff_sub}&amp;offer_id={offer_id}&amp;transaction_id={transaction_id}</code>
 <aside class="notice">
 You must replace <code>YOUR NETWORK ID</code> with your network&rsquo;s ID and <code>API KEY</code> with the key you generated in step 2. The Affiliate will replace <code>REPLACE_ME</code> <a href="#for-apps">later</a>.
 </aside></li>
@@ -172,7 +172,7 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
 <h2 id="for-apps">For Apps</h2>
 
 <ol>
-<li>Log in to your <a href="http://offerwall.io/dashboard">offerwall.io dashboard</a>. Use the network ID and API key provided by your account manager</li>
+<li>Log in to your <a href="https://offerwall.io/dashboard">offerwall.io dashboard</a>. Use the network ID and API key provided by your account manager</li>
 <li>Enter your postback URL. For more information, see the <a href="#postback-handler">postback handler</a> section.</li>
 <li>Copy your <code>postback key</code></li>
 <li>Update your global postback URL in your network&rsquo;s affiliate dashboard.
@@ -196,7 +196,7 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
 <blockquote>
 <p>Sample request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>http://offerwall.io/offers?network_id=awesomeadsnetwork&amp;api_key=XXXXXXXXXX&amp;country_code=US&amp;gaid=55952f1e-857d-4c07-b845-899c36218e0e&amp;user_id=354637
+<pre class="highlight plaintext"><code>https://offerwall.io/offers?network_id=awesomeadsnetwork&amp;api_key=XXXXXXXXXX&amp;country_code=US&amp;gaid=55952f1e-857d-4c07-b845-899c36218e0e&amp;user_id=354637
 </code></pre>
 <blockquote>
 <p>Sample response:</p>
@@ -234,7 +234,7 @@ Ensure your network has the Webhook feature enabled. This feature is still in be
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p><code>GET http://offerwall.io/offers</code></p>
+<p><code>GET https://offerwall.io/offers</code></p>
 
 <h3 id="parameters">Parameters</h3>
 
